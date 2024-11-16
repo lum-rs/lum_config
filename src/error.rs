@@ -1,7 +1,6 @@
 use std::io;
 
-use lum_libs::thiserror::Error;
-use lum_libs::{serde_env, serde_json, thiserror};
+use lum_libs::{serde_env, serde_json, thiserror::Error};
 
 #[derive(Debug, Error)]
 pub enum ConfigPathError {
