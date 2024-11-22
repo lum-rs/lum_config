@@ -25,7 +25,7 @@ where
     let env_config = env_handler.load_config()?;
     let file_config = file_handler.load_config()?;
 
-    let merged_config = merger::merge(&env_config, file_config);
+    let merged_config = merger::merge(env_config, file_config);
 
     Ok(merged_config)
 }
