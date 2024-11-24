@@ -10,12 +10,12 @@ use crate::{ConfigPathError, ConfigSaveError, FileConfigParseError};
 
 /// A handler for loading and saving configuration from/to files.
 ///
-/// The `FileHandler` struct is a generic type that takes a configuration type `CONFIG`
+/// The `FileHandler` struct is a generic type that takes a configuration type `Config`
 /// which must implement the `Serialize` and `Deserialize` traits from `serde`.
 ///
 /// # Type Parameters
 ///
-/// * `CONFIG` - The configuration type that implements `Serialize` and `Deserialize`. This is the type to which the configuration file will be deserialized.
+/// * `Config` - The configuration type that implements `Serialize` and `Deserialize`. This is the type to which the configuration file will be deserialized.
 ///
 /// # Fields
 ///
@@ -169,7 +169,7 @@ where
     /// # Returns
     ///
     /// A `Result` indicating success or failure.
-    /// * Success is indicated by an `Ok` value, containing the CONFIG instance.
+    /// * Success is indicated by an `Ok` value, containing the Config instance.
     /// * Failure is indicated by an `Err` value, containing a `FileConfigParseError`.
     pub fn load_config(&self) -> Result<Config, FileConfigParseError> {
         self.create_config_directory()?;

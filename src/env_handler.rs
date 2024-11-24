@@ -9,12 +9,12 @@ use crate::EnvironmentConfigParseError;
 
 /// A handler for loading configuration from environment variables.
 ///
-/// The `EnvHandler` struct is a generic type that takes a configuration type `CONFIG`
+/// The `EnvHandler` struct is a generic type that takes a configuration type `Config`
 /// which must implement the `Serialize` and `Deserialize` traits from `serde`.
 ///
 /// ## Type Parameters
 ///
-/// * `CONFIG` - The configuration type that implements `Serialize` and `Deserialize`. This is the type to which the environment variables will be deserialized.
+/// * `Config` - The configuration type that implements `Serialize` and `Deserialize`. This is the type to which the environment variables will be deserialized.
 ///
 /// ## Fields
 ///
@@ -73,7 +73,7 @@ where
     /// # Returns
     ///
     /// A `Result` indicating success or failure.
-    /// * Success is indicated by an `Ok` value, containing the CONFIG instance.
+    /// * Success is indicated by an `Ok` value, containing the Config instance.
     /// * Failure is indicated by an `Err` value, containing an `EnvironmentConfigParseError`.
     pub fn load_config(&self) -> Result<Config, EnvironmentConfigParseError> {
         let prefix = self.app_name.to_uppercase();
