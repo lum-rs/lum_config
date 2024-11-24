@@ -6,6 +6,7 @@ use lum_libs::{
     uuid::Uuid,
 };
 
+pub static APP_NAME: &str = "lum";
 pub static ENV_CONFIG_VALUE_SET: &str = "Environment config";
 pub static ENV_CONFIG_VALUE_NOT_SET: &str = "Environment config not set";
 pub static FILE_CONFIG_VALUE_SET: &str = "File config";
