@@ -4,7 +4,7 @@ pub mod common;
 mod tests {
     use std::fs;
 
-    use lum_config::{FileHandler, Merge};
+    use lum_config::{merger, FileHandler};
 
     use crate::common::{self};
 
@@ -49,7 +49,7 @@ mod tests {
         let file_config = common::FileConfig::default();
         let env_config = common::EnvConfig::default();
 
-        let merged_config = file_config.merge(env_config);
+        let merged_config = merger::merge(file_config, env_config);
 
         assert_eq!(merged_config.value, common::FILE_CONFIG_VALUE_SET);
         assert_eq!(
@@ -65,7 +65,7 @@ mod tests {
         assert!(nested_config.file_config.is_none());
 
         let file_config = common::FileConfig::default();
-        let merged_config = nested_config.merge(file_config);
+        let merged_config = merger::merge(nested_config, file_config);
         assert_eq!(merged_config.value, common::NESTED_CONFIG_VALUE_SET);
         assert_eq!(
             merged_config.file_config.unwrap().value,

@@ -1,6 +1,6 @@
 use std::{env, path::PathBuf};
 
-use lum_config::Merge;
+use lum_config::MergeFrom;
 use lum_libs::{
     serde::{Deserialize, Serialize},
     uuid::Uuid,
@@ -42,8 +42,8 @@ impl Default for FileConfig {
     }
 }
 
-impl Merge<EnvConfig> for FileConfig {
-    fn merge(self, other: EnvConfig) -> Self {
+impl MergeFrom<EnvConfig> for FileConfig {
+    fn merge_from(self, other: EnvConfig) -> Self {
         FileConfig {
             value: self.value,
             env_config_variable: other.value.unwrap_or("Missing".to_string()),
@@ -67,8 +67,8 @@ impl Default for NestedConfig {
     }
 }
 
-impl Merge<FileConfig> for NestedConfig {
-    fn merge(self, other: FileConfig) -> Self {
+impl MergeFrom<FileConfig> for NestedConfig {
+    fn merge_from(self, other: FileConfig) -> Self {
         NestedConfig {
             value: self.value,
             file_config: Some(other),
