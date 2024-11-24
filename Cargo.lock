@@ -1012,7 +1012,7 @@ dependencies = [
 
 [[package]]
 name = "lum_config"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "lum_libs",
  "serde",
