@@ -22,13 +22,15 @@ impl<CONFIG> FileHandler<CONFIG>
 where
     CONFIG: Serialize + for<'de> Deserialize<'de>,
 {
-    pub fn new(
-        app_name: &str,
-        config_directory: Option<&str>,
-        config_file_name: Option<&str>,
+    pub fn new<STRING: Into<String>>(
+        app_name: STRING,
+        config_directory: Option<STRING>,
+        config_file_name: Option<STRING>,
     ) -> Result<Self, ConfigPathError> {
+        let app_name = app_name.into();
+
         let mut config_directory_path = match config_directory {
-            Some(config_directory) => PathBuf::from(config_directory),
+            Some(config_directory) => PathBuf::from(config_directory.into()),
             None => match dirs::config_dir() {
                 Some(path) => path,
                 None => return Err(ConfigPathError::UnknownConfigDirectory),
@@ -36,7 +38,9 @@ where
         };
         config_directory_path.push(app_name);
 
-        let config_file_name = config_file_name.unwrap_or("config.json");
+        let config_file_name = config_file_name
+            .map(Into::into)
+            .unwrap_or("config.json".into());
         let config_file_path = config_directory_path.join(config_file_name);
 
         Ok(FileHandler {

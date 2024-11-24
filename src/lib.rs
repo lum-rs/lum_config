@@ -10,16 +10,20 @@ pub use error::*;
 pub use file_handler::FileHandler;
 pub use merger::*;
 
-pub fn load<'app_name, 'config_directory_name, 'config_file_name, FILE, ENV>(
-    app_name: &'app_name str,
-    config_directory: Option<&'config_directory_name str>,
-    config_file_name: Option<&'config_file_name str>,
+pub fn load<STRING: Into<String>, FILE, ENV>(
+    app_name: STRING,
+    config_directory: Option<STRING>,
+    config_file_name: Option<STRING>,
 ) -> Result<FILE, ConfigLoadError>
 where
     FILE: Serialize + for<'de> Deserialize<'de> + Merge<ENV>,
     ENV: Serialize + for<'de> Deserialize<'de>,
 {
-    let env_handler = EnvHandler::new(app_name);
+    let app_name = app_name.into();
+    let config_directory = config_directory.map(Into::into);
+    let config_file_name = config_file_name.map(Into::into);
+
+    let env_handler = EnvHandler::new(app_name.clone());
     let file_handler = FileHandler::new(app_name, config_directory, config_file_name)?;
 
     let env_config = env_handler.load_config()?;

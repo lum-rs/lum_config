@@ -8,21 +8,21 @@ use lum_libs::{
 use crate::EnvironmentConfigParseError;
 
 #[derive(Debug)]
-pub struct EnvHandler<'app_name, CONFIG>
+pub struct EnvHandler<CONFIG>
 where
     CONFIG: Serialize + for<'de> Deserialize<'de>,
 {
-    pub app_name: &'app_name str,
+    pub app_name: String,
     _phantom_file: PhantomData<CONFIG>,
 }
 
-impl<'app_name, CONFIG> EnvHandler<'app_name, CONFIG>
+impl<CONFIG> EnvHandler<CONFIG>
 where
     CONFIG: Serialize + for<'de> Deserialize<'de>,
 {
-    pub fn new(app_name: &'app_name str) -> Self {
+    pub fn new<STRING: Into<String>>(app_name: STRING) -> Self {
         EnvHandler {
-            app_name,
+            app_name: app_name.into(),
             _phantom_file: PhantomData,
         }
     }
