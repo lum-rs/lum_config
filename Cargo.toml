@@ -24,6 +24,6 @@ lto = false
 # serde and thiserror have to be a dependency to use their derive macros.
 # In code, we are still importing from lum_libs, but their macros need the respective crate to be present.
 [dependencies]
-lum_libs = "0.1.3"
+lum_libs = "0.1.5"
 serde = { version = "1.0.215", features = ["derive"] }
 thiserror = "2.0.3"
