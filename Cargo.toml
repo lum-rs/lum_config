@@ -25,5 +25,5 @@ lto = false
 # In code, we are still importing from lum_libs, but their macros need the respective crate to be present.
 [dependencies]
 lum_libs = "0.1.5"
-serde = { version = "1.0.215", features = ["derive"] }
+serde = { version = "1.0.216", features = ["derive"] }
 thiserror = "2.0.3"
