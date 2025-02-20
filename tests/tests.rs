@@ -4,7 +4,7 @@ pub mod common;
 mod tests {
     use std::fs;
 
-    use lum_config::{merger, FileHandler};
+    use lum_config::{FileHandler, merger};
 
     use crate::common::{self};
 

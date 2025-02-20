@@ -32,7 +32,9 @@ use crate::EnvironmentConfigParseError;
 ///     key: String,
 /// }
 ///
-/// env::set_var("MYAPP_KEY", "value");
+/// unsafe {
+///    env::set_var("MYAPP_KEY", "value");
+/// }
 ///
 /// let handler = EnvHandler::<Config>::new("MyApp");
 /// let config = handler.load_config().unwrap();
