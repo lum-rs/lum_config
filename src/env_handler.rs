@@ -28,6 +28,7 @@ use crate::EnvironmentConfigParseError;
 /// use std::env;
 ///
 /// #[derive(Serialize, Deserialize)]
+/// #[serde(crate = "lum_libs::serde")]
 /// struct Config {
 ///     key: String,
 /// }
