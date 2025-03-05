@@ -30,6 +30,7 @@ use crate::{ConfigPathError, ConfigSaveError, FileConfigParseError};
 /// use std::{env, fs, path::PathBuf};
 ///
 /// #[derive(Serialize, Deserialize)]
+/// #[serde(crate = "lum_libs::serde")]
 /// #[serde(default)]
 /// struct Config {
 ///     key: String,

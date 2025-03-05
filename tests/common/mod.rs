@@ -13,6 +13,7 @@ pub static FILE_CONFIG_VALUE_SET: &str = "File config";
 pub static NESTED_CONFIG_VALUE_SET: &str = "Nested config";
 
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(crate = "lum_libs::serde")]
 #[serde(default)]
 pub struct EnvConfig {
     pub value: Option<String>,
@@ -27,6 +28,7 @@ impl Default for EnvConfig {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(crate = "lum_libs::serde")]
 #[serde(default)]
 pub struct FileConfig {
     pub value: String,
@@ -52,6 +54,7 @@ impl MergeFrom<EnvConfig> for FileConfig {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(crate = "lum_libs::serde")]
 #[serde(default)]
 pub struct NestedConfig {
     pub value: String,
