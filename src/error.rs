@@ -1,6 +1,7 @@
 use std::io;
 
-use lum_libs::{serde_env, serde_json, thiserror::Error};
+use lum_libs::{serde_env, serde_json};
+use thiserror::Error;
 
 /// Error that can occur when trying to get the OS-specific config directory.
 #[derive(Debug, Error)]
