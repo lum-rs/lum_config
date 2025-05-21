@@ -1163,7 +1163,7 @@ dependencies = [
 
 [[package]]
 name = "lum_config"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "lum_libs",
  "thiserror 2.0.12",
