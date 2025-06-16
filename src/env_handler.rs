@@ -48,7 +48,7 @@ where
     Config: Serialize + for<'de> Deserialize<'de>,
 {
     pub app_name: String,
-    _phantom_file: PhantomData<Config>,
+    _phantom_data: PhantomData<Config>,
 }
 
 impl<Config> EnvHandler<Config>
@@ -64,10 +64,10 @@ where
     /// # Returns
     ///
     /// A new `EnvHandler` instance.
-    pub fn new<IntoString: Into<String>>(app_name: IntoString) -> Self {
+    pub fn new(app_name: impl Into<String>) -> Self {
         EnvHandler {
             app_name: app_name.into(),
-            _phantom_file: PhantomData,
+            _phantom_data: PhantomData,
         }
     }
 

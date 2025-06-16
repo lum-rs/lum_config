@@ -17,7 +17,6 @@ pub use merger::*;
 /// This function is a convenience function that combines the functionality of [EnvHandler], [FileHandler], and [merger].
 ///
 /// The function takes the following generic type parameters:
-/// * `IntoString` - A type that can be converted into a `String`. This is used for the `app_name`, `config_directory`, and `config_file_name` parameters.
 /// * `FileConfig` - The configuration type that will be loaded from the file. This type must implement `Serialize`, `Deserialize`, and `MergeFrom<EnvConfig>`.
 /// * `EnvConfig` - The configuration type that will be loaded from the environment variables. This type must implement `Serialize` and `Deserialize`.
 ///
@@ -32,10 +31,10 @@ pub use merger::*;
 /// A `Result` indicating success or failure.
 /// * Success is indicated by an `Ok` value, containing the merged `FileConfig`.
 /// * Failure is indicated by an `Err` value, containing an instance of [ConfigLoadError].
-pub fn load<IntoString: Into<String>, FileConfig, EnvConfig>(
-    app_name: IntoString,
-    config_directory: Option<IntoString>,
-    config_file_name: Option<IntoString>,
+pub fn load<FileConfig, EnvConfig>(
+    app_name: impl Into<String>,
+    config_directory: Option<impl Into<String>>,
+    config_file_name: Option<impl Into<String>>,
 ) -> Result<FileConfig, ConfigLoadError>
 where
     FileConfig: Serialize + for<'de> Deserialize<'de> + MergeFrom<EnvConfig>,

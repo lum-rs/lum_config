@@ -9,6 +9,14 @@ mod tests {
     use crate::common::{self};
 
     #[test]
+    fn construction_allows_different_string_types() {
+        let app_name = common::APP_NAME;
+
+        let _file_handler: FileHandler<common::FileConfig> =
+            FileHandler::new(app_name, None::<&str>, None::<&String>).unwrap();
+    }
+
+    #[test]
     fn file_config_default() {
         let file_config = common::FileConfig::default();
 
@@ -24,7 +32,7 @@ mod tests {
         let temp_dir = common::get_temp_dir();
         let temp_str = temp_dir.to_str().unwrap();
         let file_handler: FileHandler<common::FileConfig> =
-            FileHandler::new(common::APP_NAME, Some(temp_str), None).unwrap();
+            FileHandler::new(common::APP_NAME, Some(temp_str), None::<&str>).unwrap();
         let file_config = file_handler.load_config().unwrap();
 
         assert_eq!(file_config.value, common::FILE_CONFIG_VALUE_SET);

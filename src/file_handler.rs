@@ -49,7 +49,7 @@ use crate::{ConfigPathError, ConfigSaveError, FileConfigParseError};
 ///
 /// let temp_str = temp_dir.to_str().unwrap();
 /// let file_handler: FileHandler<Config> =
-///     FileHandler::new("MyApp", Some(temp_str), None).unwrap();
+///     FileHandler::new("MyApp", Some(temp_str), None::<&str>).unwrap();
 ///
 /// let config = file_handler.load_config().unwrap();
 /// fs::remove_dir_all(temp_dir).unwrap(); // To clean up the temporary directory when running the test
@@ -63,7 +63,7 @@ where
 {
     pub config_directory_path: PathBuf,
     pub config_file_path: PathBuf,
-    _phantom_file: PhantomData<Config>,
+    _phantom_data: PhantomData<Config>,
 }
 
 impl<Config> FileHandler<Config>
@@ -83,10 +83,10 @@ where
     /// A `Result` indicating success or failure.
     /// * Success is indicated by an `Ok` value, containing the `FileHandler` instance.
     /// * Failure is indicated by an `Err` value, containing a `ConfigPathError`.
-    pub fn new<IntoString: Into<String>>(
-        app_name: IntoString,
-        config_directory: Option<IntoString>,
-        config_file_name: Option<IntoString>,
+    pub fn new(
+        app_name: impl Into<String>,
+        config_directory: Option<impl Into<String>>,
+        config_file_name: Option<impl Into<String>>,
     ) -> Result<Self, ConfigPathError> {
         let app_name = app_name.into();
 
@@ -107,7 +107,7 @@ where
         Ok(FileHandler {
             config_directory_path,
             config_file_path,
-            _phantom_file: PhantomData,
+            _phantom_data: PhantomData,
         })
     }
 
