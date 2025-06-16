@@ -99,9 +99,11 @@ where
         };
         config_directory_path.push(app_name);
 
-        let config_file_name = config_file_name
-            .map(Into::into)
-            .unwrap_or("config.json".into());
+        let config_file_name = match config_file_name {
+            Some(name) => name.into(),
+            None => "config.json".to_string(),
+        };
+
         let config_file_path = config_directory_path.join(config_file_name);
 
         Ok(FileHandler {
@@ -145,7 +147,7 @@ where
     /// A `Result` indicating success or failure.
     /// * Success is indicated by an `Ok` value, containing the unit type `()`.
     /// * Failure is indicated by an `Err` value, containing a `ConfigSaveError`.
-    pub fn save_config(&self, config: &Config) -> Result<(), ConfigSaveError> {
+    pub fn save(&self, config: &Config) -> Result<(), ConfigSaveError> {
         self.create_config_directory()?;
 
         let config_json = serde_json::to_string_pretty(config)?;
@@ -172,7 +174,7 @@ where
     /// A `Result` indicating success or failure.
     /// * Success is indicated by an `Ok` value, containing the Config instance.
     /// * Failure is indicated by an `Err` value, containing a `FileConfigParseError`.
-    pub fn load_config(&self) -> Result<Config, FileConfigParseError> {
+    pub fn load(&self) -> Result<Config, FileConfigParseError> {
         self.create_config_directory()?;
 
         let path = &self.config_file_path;
@@ -182,7 +184,7 @@ where
 
         let config_json = fs::read_to_string(path)?;
         let config = serde_json::from_str(&config_json)?;
-        self.save_config(&config)?; // In case the config file was missing some fields which serde used the defaults for
+        self.save(&config)?; // In case the config file was missing some fields which serde used the defaults for
 
         Ok(config)
     }

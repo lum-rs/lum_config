@@ -47,9 +47,8 @@ where
     let env_handler = EnvHandler::new(app_name.clone());
     let file_handler = FileHandler::new(app_name, config_directory, config_file_name)?;
 
-    let env_config = env_handler.load_config()?;
-    let file_config = file_handler.load_config()?;
-
+    let env_config = env_handler.load()?;
+    let file_config = file_handler.load()?;
     let merged_config = merger::merge(env_config, file_config);
 
     Ok(merged_config)

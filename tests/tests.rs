@@ -33,7 +33,7 @@ mod tests {
         let temp_str = temp_dir.to_str().unwrap();
         let file_handler: FileHandler<common::FileConfig> =
             FileHandler::new(common::APP_NAME, Some(temp_str), None::<&str>).unwrap();
-        let file_config = file_handler.load_config().unwrap();
+        let file_config = file_handler.load().unwrap();
 
         assert_eq!(file_config.value, common::FILE_CONFIG_VALUE_SET);
         assert_eq!(
