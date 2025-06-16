@@ -38,7 +38,7 @@ use crate::EnvironmentConfigParseError;
 /// }
 ///
 /// let handler = EnvHandler::<Config>::new("MyApp");
-/// let config = handler.load_config().unwrap();
+/// let config = handler.load().unwrap();
 ///
 /// assert_eq!(config.key, "value");
 /// ```
@@ -78,7 +78,7 @@ where
     /// A `Result` indicating success or failure.
     /// * Success is indicated by an `Ok` value, containing the Config instance.
     /// * Failure is indicated by an `Err` value, containing an `EnvironmentConfigParseError`.
-    pub fn load_config(&self) -> Result<Config, EnvironmentConfigParseError> {
+    pub fn load(&self) -> Result<Config, EnvironmentConfigParseError> {
         let prefix = self.app_name.to_uppercase();
         let config = serde_env::from_env_with_prefix(&prefix)?;
 
