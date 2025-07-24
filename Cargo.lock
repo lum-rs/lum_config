@@ -124,9 +124,9 @@ dependencies = [
 
 [[package]]
 name = "lum_libs"
-version = "0.2.5"
+version = "0.2.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "037fddc58fc5c4422a31205644d4c914c3a17c0ea6202ee1cd9a631b5c526aec"
+checksum = "2c93820cfff2826e15caa380a002d79fc513096fd32af83247ad7a8ba7d6201c"
 dependencies = [
  "dirs",
  "serde",
@@ -266,9 +266,9 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "1.0.140"
+version = "1.0.141"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "20068b6e96dc6c9bd23e01df8827e6c7e1f2fddd43c21810382803c136b99373"
+checksum = "30b9eff21ebe718216c6ec64e1d9ac57087aad11efc64e32002bce4a0d4c03d3"
 dependencies = [
  "itoa",
  "memchr",
