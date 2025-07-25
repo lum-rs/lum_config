@@ -41,9 +41,6 @@ where
     EnvConfig: Serialize + for<'de> Deserialize<'de>,
 {
     let app_name = app_name.into();
-    let config_directory = config_directory.map(Into::into);
-    let config_file_name = config_file_name.map(Into::into);
-
     let env_handler = EnvHandler::new(app_name.clone());
     let file_handler = FileHandler::new(app_name, config_directory, config_file_name)?;
 
