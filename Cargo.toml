@@ -23,4 +23,4 @@ lto = false
 
 [dependencies]
 lum_libs = { version = "0.2.6", features = ["dirs", "serde", "serde-env", "serde_json", "uuid"] }
-thiserror = "2.0.12"
+thiserror = "2.0.15"
