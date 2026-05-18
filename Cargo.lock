@@ -222,9 +222,9 @@ dependencies = [
 
 [[package]]
 name = "lum_libs"
-version = "0.2.12"
+version = "0.2.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "40d2991a1637ad6eadafa45a85b649349a5cd1bd43450b65cbd91ad442d98012"
+checksum = "0e50ec36684d0bbe6974880cc54fadd96f4beabf9c09089239dd70e5b40766e9"
 dependencies = [
  "dirs",
  "serde",
