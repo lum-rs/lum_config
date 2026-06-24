@@ -1,4 +1,10 @@
-# lum_config
+# ARCHIVED
+
+Moved to https://github.com/lum-rs/lum
+
+---
+
+## lum_config
 
 lum framework's config library
 
